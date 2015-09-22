@@ -228,12 +228,22 @@ Using what we learned today, create a webpage with the following elements.
     + meta tag for charset
     + meta tag for viewport
     + Link tag pointing to leaflet.css
+      + `<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />`   
     + Link tag for `style.css`, a file you create where you'll write your CSS code (save the file in the same folder as `assignment.html`)
+      + `<link rel="stylesheet" href="style.css" />`  
   - body tag
     + div tag with `id` set to `map-container`
     + div tag with `class` set to `red box`
-    + Script tags linking to leaflet and jquery.
+    + Script tags linking to leaflet and jquery.  
+      ```
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	  <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+       ```
+     
     + Script tag pointing to `script.js`, a file you create where you'll write your JS (save the file in the same folder as `assignment.html`)
+      ```
+      <script src="script.js"></script>
+      ```
 
 2. A CSS file called `style.css`
   - a rule for the id `map-container` that sets the `height` to `400px;` and the `width` to `500px;`
@@ -241,13 +251,20 @@ Using what we learned today, create a webpage with the following elements.
   - a rule for the class `red` setting `background-color` to `tomato;` and `border` to `3px double red;` 
 
 3. A JavaScript file called `script.js`
-  - create a Leaflet map 
-  - set the initial view to 44.971724, -93.243239 and zoom level 16
-  - add a basemap using the url `http://{s}.tile.osm.org/{z}/{x}/{y}.png`
-  - request GeoJSON from the url `https://dl.dropboxusercontent.com/u/8550761/wilson-library.geojson` using JQuery
-    + add a GeoJSON based layer to the map using the requested GeoJSON
+  - create a Leaflet map (`L.map`) 
+  - set the initial view to 44.971724, -93.243239 and zoom level 16 (`L.setView`)
+  - add a basemap using the url `http://{s}.tile.osm.org/{z}/{x}/{y}.png` (`L.tileLayer`)
+  - request GeoJSON from the url `https://dl.dropboxusercontent.com/u/8550761/wilson-library.geojson` using JQuery's [$.getJSON](http://api.jquery.com/jquery.getjson/) function
+  - add a GeoJSON based layer to the map using the requested GeoJSON  
+```javascript
+$.getJSON(<url for geojson>, function(data){
+    var geojson = new L.geoJson(data) //don't forget the word new in front of L.geoJson!
+        .addTo(map);
+});
+```
   - Use JQuery to select the div with `class` set to `red box`
-    + Add a click handler that does something in response to a user clicking on the div
+    + Use the selector `.red.box` 
+    + Add a click handler (`$(<your selector>).click(function(e){<doing something>})`) that does something in response to a user clicking on the div
 
 #### "Extra Credit"
   - add a button to your html that when clicked will request GeoJSON and add it as a layer to the map
@@ -259,7 +276,7 @@ Using what we learned today, create a webpage with the following elements.
     + style each feature to be red circle instead of the default blue marker
 
 #### Some guidelines
-You're going to need to read documentation, review what we've done, look at some source code, and ask each other some questions. You can use the "Issues" feature of GitHub to ask questions for the group. I'll answer them, but would really like all of you to feel comfortable contributing as well! Remember the console (ctrl-I or cmd-shift-I (Mac)) is your friend!
+You're going to need to read documentation ([Leaflet's](http://leafletjs.com/reference.html) especially), review what we've done, look at some source code, and ask each other some questions. You can use the "Issues" feature of GitHub to ask questions for the group. I'll answer them, but would really like all of you to feel comfortable contributing as well! Remember the console (ctrl-shift-I or cmd-shift-I (Mac)) is your friend!
 
 
 
