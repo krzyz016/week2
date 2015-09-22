@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Assignment.html</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+
+</head>
+<body>
+  <div id="map-container"></div>
+  <div class="red"</div>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+  </body>
+</html>
+
+
+<style> 
+    body, html, #map-container{
+      height:400px;
+      width:500px;
+    }
+  
+     body, html, .box{
+      height:200px;
+      width:200px;
+    }
+       body, html, .red{
+      background-color:tomato;
+      border:3px double red;
+    }
+  </style>
+
+  
+  <script>
+    var map = L.map('map-container');
+    map.setView([44.971724,-93.243239],16);
+    L.tile('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+   $.getJSON("https://dl.dropboxusercontent.com/u/8550761/wilson-library.geojson", function(data){new L.GeoJSON(data).addTo(map)});
+    $.div class:red box;
+    $("b").click(function(){alert("Stop Clicking")});
+    
+  </script> 
